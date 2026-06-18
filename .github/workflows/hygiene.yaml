@@ -28,3 +28,36 @@ jobs:
         run: |
           make tidy
           git diff --exit-code go.mod go.sum
+
+      - name: Check dependency graph
+        run: |
+          module_re='^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)+'
+          module_re+='([[:space:]]+v[0-9][^[:space:]]*)?$'
+          modules="$(make deps | grep -E "$module_re")"
+          printf '%s\n' "$modules"
+          expected="$(printf '%s\n%s' \
+            'github.com/yaml/go-yaml-dom' \
+            'go.yaml.in/yaml/v4 v4.0.0-rc.5')"
+          test "$modules" = "$expected"
+
+  files:
+    name: file checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Actionlint
+        uses: raven-actions/actionlint@v2
+
+      - name: Yamllint
+        uses: ibiqlik/action-yamllint@v3
+
+      - name: ls-lint
+        uses: ls-lint/action@v2.3.1
+        with:
+          config: .ls-lint.yaml
+
+      - name: Typos
+        uses: crate-ci/typos@v1.47.2

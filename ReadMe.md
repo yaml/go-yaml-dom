@@ -404,7 +404,8 @@ working tree, and creates an annotated tag named `v0.1.1`.
 ## CI
 
 GitHub Actions runs tests, hygiene checks, example smoke tests, Staticcheck,
-CodeQL, and a dependency guard. The dependency guard verifies that the module
+and CodeQL. Hygiene includes formatting, `go.mod`/`go.sum`, file lint, spelling,
+and dependency graph checks. The dependency graph check verifies that the module
 graph contains only this module and `go.yaml.in/yaml/v4 v4.0.0-rc.5`.
 
 Dependabot is configured for Go modules and GitHub Actions.
