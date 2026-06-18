@@ -18,5 +18,5 @@ MAKES-CLEAN := $(BIN)
 build: $(GO)
 	go build -o $(BIN) .
 
-run:
+run: $(GO)
 	go run main.go
