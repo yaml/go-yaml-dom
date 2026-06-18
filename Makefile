@@ -6,6 +6,7 @@ $(shell [ -d '$(M)' ] || git clone -q $(R) '$(M)')
 include $(M)/init.mk
 
 GO-VERSION := 1.18.10
+GH-TOKEN-FILE := $(HOME)/.github-token-yaml
 include $(M)/go.mk
 include $(M)/clean.mk
 include $(M)/gh.mk
