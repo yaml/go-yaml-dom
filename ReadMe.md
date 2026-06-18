@@ -391,20 +391,6 @@ make clean       # remove example binaries
 make deps        # print the module graph
 ```
 
-Create a release tag:
-
-```sh
-make release VERSION=0.1.1
-```
-
-`VERSION` is required and may be written as `0.1.1` or `v0.1.1`. The release
-target normalizes both forms to the tag `v0.1.1`, runs verification, requires a
-clean working tree, pushes the tag to `origin`, and creates a GitHub release
-with generated notes.
-
-Run `make release` without `VERSION` to print the latest local release tag
-without changing anything.
-
 ## CI
 
 GitHub Actions runs tests, hygiene checks, example smoke tests, Staticcheck,

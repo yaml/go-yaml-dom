@@ -89,6 +89,7 @@ release-tag: release-check verify release-remote-check
 	git tag -a '$(RELEASE-TAG)' -m 'Release $(RELEASE-TAG)'
 
 release-push: release-tag
+	git push origin HEAD
 	git push origin '$(RELEASE-TAG)'
 
 release-github: release-push
