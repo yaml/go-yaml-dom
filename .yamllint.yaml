@@ -2,6 +2,7 @@ extends: default
 
 ignore: |
   .cache/
+  node_modules/
 
 rules:
   brackets:

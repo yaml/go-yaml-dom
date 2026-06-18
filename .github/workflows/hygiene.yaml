@@ -48,9 +48,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Actionlint
-        uses: raven-actions/actionlint@v2
-
       - name: Yamllint
         uses: ibiqlik/action-yamllint@v3
 
@@ -61,3 +58,6 @@ jobs:
 
       - name: Typos
         uses: crate-ci/typos@v1.47.2
+
+      - name: Actionlint
+        uses: raven-actions/actionlint@v2

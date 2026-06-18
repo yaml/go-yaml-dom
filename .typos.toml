@@ -1,6 +1,7 @@
 [files]
 extend-exclude = [
 	".cache",
+	"node_modules",
 	"examples/append-sequences/append-sequences",
 	"examples/basic-merge/basic-merge",
 	"examples/clone-merge/clone-merge",
