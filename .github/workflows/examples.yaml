@@ -1,0 +1,34 @@
+name: Examples
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  examples:
+    name: example smoke tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - append-sequences
+          - basic-merge
+          - clone-merge
+          - find-update
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run example
+        run: |
+          make -C examples/${{ matrix.example }} clean
+          make -C examples/${{ matrix.example }} run
+          make -C examples/${{ matrix.example }} clean

@@ -1,0 +1,30 @@
+name: Dependency Guard
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-guard:
+    name: dependency graph
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check dependency graph
+        run: |
+          module_re='^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)+'
+          module_re+='([[:space:]]+v[0-9][^[:space:]]*)?$'
+          modules="$(make deps | grep -E "$module_re")"
+          printf '%s\n' "$modules"
+          expected='github.com/yaml/go-yaml-dom
+go.yaml.in/yaml/v4 v4.0.0-rc.5'
+          test "$modules" = "$expected"
