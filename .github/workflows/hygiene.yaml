@@ -57,7 +57,7 @@ jobs:
           config: .ls-lint.yaml
 
       - name: Typos
-        uses: crate-ci/typos@v1.47.2
+        uses: crate-ci/typos@v1.49.0
 
       - name: Actionlint
         uses: raven-actions/actionlint@v2
